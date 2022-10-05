@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { login } from "../redux/actions/loginActions";
 
 
@@ -66,7 +66,7 @@ const Login = () => {
           By clicking Agree & Join, you agree to the LinkedIn User Agreement,
           Privacy Policy, and Cookie Policy.
         </span>
-        <Link to={"/home"} onClick={()=>{dispatch(login())}} style={{ textDecoration: "none" }}>
+        <Link onClick={()=>{dispatch(login())}} style={{ textDecoration: "none" }}>
           <div
             style={{
               width: "37%",
