@@ -1,3 +1,11 @@
+*:focus {
+  outline: none;
+}
+
+textarea {
+ resize: none;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
