@@ -2,8 +2,6 @@ import {
   LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  SIGNOUT_FAIL,
-  SIGNOUT_REQUEST,
   SIGNOUT_SUCCESS,
 } from "../constants/loginConstants";
 
@@ -13,7 +11,6 @@ export const login = () => async (dispatch) => {
     setTimeout(() => {
       dispatch({ type: LOGIN_SUCCESS, payload: true });
       localStorage.setItem("Token", "1234567890");
-      
     }, 3000);
   } catch (error) {
     dispatch({

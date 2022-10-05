@@ -1,13 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  BrowserRouter,
-  Link,
-  Navigate,
-  redirect,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Chat from "./pages/Chat";
 import Home from "./pages/Home";
@@ -22,7 +15,7 @@ function App() {
   useEffect(() => {
     dispatch(TokenValidCheck());
   }, []);
-  
+
   return (
     <BrowserRouter>
       {!isLoggedIn ? (

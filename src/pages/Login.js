@@ -1,12 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
+import styled from "styled-components";
 import { login } from "../redux/actions/loginActions";
 
-
 const Login = () => {
-  
-  const dispatch=useDispatch()
-
+  const dispatch = useDispatch();
+  const loginInfo = useSelector((state) => state.loginInfo);
+  const { loading } = loginInfo;
   return (
     <div style={{ padding: "20px 30px 10px 90px", height: "100vh" }}>
       <div
@@ -66,30 +66,49 @@ const Login = () => {
           By clicking Agree & Join, you agree to the LinkedIn User Agreement,
           Privacy Policy, and Cookie Policy.
         </span>
-        <Link onClick={()=>{dispatch(login())}} style={{ textDecoration: "none" }}>
-          <div
-            style={{
-              width: "37%",
-              marginTop: "15px",
-              height: "3.5rem",
-              backgroundColor: "#0A66C2",
-              borderRadius: "2.5rem",
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-              cursor: "pointer",
-            }}
-           
+        <Link
+          onClick={() => {
+            dispatch(login());
+          }}
+          style={{ textDecoration: "none" }}
+        >
+          <AggreeJoinButton
+            
           >
             <span style={{ fontSize: "18px", color: "white" }}>
-              Agree & Join
+              {
+                loading?"Loading":"Agree & Join"
+              }
+              
             </span>
-          </div>
+          </AggreeJoinButton>
         </Link>
       </form>
       <Outlet />
     </div>
   );
 };
+
+const AggreeJoinButton = styled.button`
+  width: 20%;
+  margin-top: 15px;
+  height: 3.5rem;
+  background-color: #0a66c2;
+  border-radius: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  transition: width 1s;
+  border-width: 0;
+  cursor: pointer;
+  
+  &:hover {
+    width: 37%;
+  }
+  &:active{
+    background-color: #0a66c290;
+  }
+  
+`;
 
 export default Login;
