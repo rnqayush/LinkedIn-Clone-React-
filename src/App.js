@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   BrowserRouter,
   Link,
@@ -13,18 +13,22 @@ import Chat from "./pages/Chat";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Notifications from "./pages/Notifications";
+import { TokenValidCheck } from "./redux/actions/loginActions";
 
 function App() {
   const loginInfo = useSelector((state) => state.loginInfo);
   const { isLoggedIn } = loginInfo;
-
-  // Navigate is used to navigate to any route 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(TokenValidCheck());
+  }, []);
+  
   return (
     <BrowserRouter>
       {!isLoggedIn ? (
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="*" element={<Navigate to={"/"} />} /> 
+          <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
       ) : (
         <Routes>

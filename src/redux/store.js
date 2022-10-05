@@ -6,10 +6,6 @@ import {
   } from './reducers/postReducers.js';
 
   const initialState = {
-    loginInfo:{
-      isLoggedIn:localStorage.getItem("isLoggedIn")
-    }
-    
   };
 
   const reducer = combineReducers({
