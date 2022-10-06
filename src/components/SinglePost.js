@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const SinglePost = ({item}) => {
+const SinglePost = ({ item }) => {
 
-  const {userId,userImage,userName,userAbout,userPostText,userPostMedia}=item
-  
+  const { userId, userImage, userName, userAbout, userPostText, userPostMedia } = item
+
   return (
     <div
       style={{
@@ -48,13 +48,15 @@ const SinglePost = ({item}) => {
         <ImageVideoBox style={{ objectFit: "contain" }}>
           {/* TODO: to enable multi image later.. and we will remove userPostMedia[0] to display only single image*/}
           {
-            userPostMedia.length!==0?<img
-            src={userPostMedia[0]}
-            style={{ width: "100%", maxHeight: "33rem" }}
-            alt="not avialable"
-          />:null
+            userPostMedia && userPostMedia.length != 0 ?
+              userPostMedia.map(item => <img
+                src={typeof item == "object" ? URL.createObjectURL(item) : item}
+                style={{ width: "100%", maxHeight: "33rem" }}
+                alt="not avialable"
+              />) : null
+
           }
-          
+
         </ImageVideoBox>
       </MainPostBox>
     </div>

@@ -13,7 +13,7 @@ import { createPost } from "../redux/actions/postActions";
 const Modal = ({ isVisible, crossPress, postClicked }) => {
   const uploadMedias = useRef();
   const [value, setValue] = useState("");
-  const [media,setMedia]=useState()
+  const [media,setMedia]=useState([])
   
   // const postData = useSelector((state) => state.createPost);
 
@@ -31,7 +31,9 @@ const Modal = ({ isVisible, crossPress, postClicked }) => {
     postClicked()
   }
 
-
+  const mediaSelectionhandler=(e)=>{
+    setMedia([...media,...e.target.files])
+  }
   return isVisible ? (
     <div
       style={{
@@ -124,6 +126,9 @@ const Modal = ({ isVisible, crossPress, postClicked }) => {
             />
           </div>
         </div>
+        <div>
+          {media&&media.length!=0?media.map(item=><img key={item} src={URL.createObjectURL(item)} style={{width:"20px", height:"20px"}}/>):null}
+        </div>
         <div style={{ padding: "0px 20px 30px 20px" }}>
           <div>
             <span>Add Hashtag</span>
@@ -153,10 +158,10 @@ const Modal = ({ isVisible, crossPress, postClicked }) => {
               <input
                 type={"file"}
                 alt={"n/a"}
-                
+                multiple
                 style={{ display: "none" }}
                 ref={uploadMedias}
-                onChange={(e)=>setMedia(e.target.files[0])}
+                onChange={mediaSelectionhandler}
               />
 
               <BsFillCaretRightSquareFill size={20} />

@@ -27,7 +27,7 @@ const Home = () => {
         userName: createdPostData.userName,
         userAbout: createdPostData.userAbout,
         userPostText: createdPostData.userPostText,
-        userPostMedia: createdPostData.userPostMedia?[URL.createObjectURL(createdPostData.userPostMedia)]:"",
+        userPostMedia: createdPostData.userPostMedia
       };
       
       setAllFeedList([createdPost,...allfeedList])
