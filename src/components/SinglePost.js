@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ImageSlider from "./ImageSlider";
 
 const SinglePost = ({ item }) => {
 
@@ -45,15 +46,16 @@ const SinglePost = ({ item }) => {
             </span>
           </WrittenContentBox>
         </div>
-        <ImageVideoBox style={{ objectFit: "contain" }}>
+        <ImageVideoBox style={{ }}>
           {/* TODO: to enable multi image later.. and we will remove userPostMedia[0] to display only single image*/}
           {
             userPostMedia && userPostMedia.length != 0 ?
-              userPostMedia.map(item => <img
-                src={typeof item == "object" ? URL.createObjectURL(item) : item}
-                style={{ width: "100%", maxHeight: "33rem" }}
-                alt="not avialable"
-              />) : null
+            <ImageSlider imageList={userPostMedia}  />:null
+              // userPostMedia.map(item => <img
+              //   src={typeof item == "object" ? URL.createObjectURL(item) : item}
+              //   style={{ width: "100%", maxHeight: "33rem" }}
+              //   alt="not avialable"
+              // />) : null
 
           }
 
