@@ -7,33 +7,32 @@ import {
   BsXLg,
 } from "react-icons/bs";
 
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { createPost } from "../redux/actions/postActions";
 
 const Modal = ({ isVisible, crossPress, postClicked }) => {
   const uploadMedias = useRef();
   const [value, setValue] = useState("");
-  const [media,setMedia]=useState([])
-  
+  const [media, setMedia] = useState([]);
+
   // const postData = useSelector((state) => state.createPost);
 
-
   const dispatch = useDispatch();
-  const submitPostHandler=()=>{
-    const requestBody={
-      userId:"18",
+  const submitPostHandler = () => {
+    const requestBody = {
+      userId: "18",
       value,
       media,
-    }
-    dispatch(createPost(requestBody))
-    setValue("")
-    setMedia("")
-    postClicked()
-  }
+    };
+    dispatch(createPost(requestBody));
+    setValue("");
+    setMedia("");
+    postClicked();
+  };
 
-  const mediaSelectionhandler=(e)=>{
-    setMedia([...media,...e.target.files])
-  }
+  const mediaSelectionhandler = (e) => {
+    setMedia([...media, ...e.target.files]);
+  };
   return isVisible ? (
     <div
       style={{
@@ -74,8 +73,6 @@ const Modal = ({ isVisible, crossPress, postClicked }) => {
         >
           <span style={{ fontSize: "20px" }}>Create a post</span>
           <BsXLg size={20} onClick={() => crossPress()} />
-        
-          
         </div>
         <div style={{ padding: "10px 20px", height: "50%" }}>
           <div
@@ -127,7 +124,15 @@ const Modal = ({ isVisible, crossPress, postClicked }) => {
           </div>
         </div>
         <div>
-          {media&&media.length!=0?media.map(item=><img key={item} src={URL.createObjectURL(item)} style={{width:"20px", height:"20px"}}/>):null}
+          {media && media.length != 0
+            ? media.map((item) => (
+                <img
+                  key={item}
+                  src={URL.createObjectURL(item)}
+                  style={{ width: "20px", height: "20px" }}
+                />
+              ))
+            : null}
         </div>
         <div style={{ padding: "0px 20px 30px 20px" }}>
           <div>
@@ -177,7 +182,7 @@ const Modal = ({ isVisible, crossPress, postClicked }) => {
                 display: "flex",
                 justifyContent: "center",
                 borderRadius: "2rem",
-                cursor:"pointer"
+                cursor: "pointer",
               }}
               onClick={submitPostHandler}
             >
