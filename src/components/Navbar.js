@@ -10,9 +10,11 @@ import {
 } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { login, signout } from "../redux/actions/loginActions";
+import { Link } from "react-router-dom";
 const Navbar = () => {
 
   const dispatch=useDispatch()
+  
 
   return (
     <div>
@@ -75,8 +77,10 @@ const Navbar = () => {
             }}
           >
             <BsChatRightDotsFill size={22} color={"#00000090"}/>
-
+            <Link to={"chat"} >
             <span style={{ fontSize: "12px" }}>Messaging</span>
+            </Link>
+            
           </div>
           <div
             style={{
@@ -89,6 +93,7 @@ const Navbar = () => {
 
             <span style={{ fontSize: "12px" }}>Notifications</span>
           </div>
+          <Link to={"/"}>
           <div
             onClick={()=>{dispatch(signout())}}
             style={{
@@ -104,6 +109,8 @@ const Navbar = () => {
             />
             <span style={{ fontSize: "12px" }}>Me</span>
           </div>
+          </Link>
+         
         </RightItem>
       </NavBarContainer>
       <BodyContainer>

@@ -21,16 +21,20 @@ function App() {
       {!isLoggedIn ? (
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="*" element={<Navigate to={"/"} />} />
+          <Route path="*" element={<span>404 NOT FOUND</span>} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="/home" element={<Navbar />}>
+          <Route path="/" element={<Navbar />}>
             <Route index element={<Home />} />
             <Route path="chat" element={<Chat />} />
             <Route path="notification" element={<Notifications />} />
+            
+            <Route path="notification/:id" element={<Notifications />} />
+            
           </Route>
-          <Route path="*" element={<Navigate to={"/home"} />} />
+          <Route path="*" element={<Navigate to={"/"} />} />
+          
         </Routes>
       )}
     </BrowserRouter>
