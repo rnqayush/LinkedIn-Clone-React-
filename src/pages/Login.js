@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
@@ -6,7 +7,10 @@ import { login } from "../redux/actions/loginActions";
 const Login = () => {
   const dispatch = useDispatch();
   const loginInfo = useSelector((state) => state.loginInfo);
-  const { loading } = loginInfo;
+  const { loading,error } = loginInfo;
+  const [email,setEmail]=useState("")
+  const [password,setPassword]=useState("")
+
   return (
     <div style={{ padding: "20px 30px 10px 90px", height: "100vh" }}>
       <div
@@ -37,16 +41,24 @@ const Login = () => {
           professional community
         </span>
       </div>
+     
       <form
         style={{ display: "flex", flexDirection: "column", marginTop: "2rem" }}
       >
+         {error?<span style={{marginBottom:"10px",fontSize:"14px",color:"red"}}>{error}</span>:null}
         <input
           placeholder="Email"
+          value={email}
           style={{ paddingLeft: "20px", width: "35%", height: "2.5rem" }}
+          onChange={(e)=>setEmail(e.target.value)}
+          required
         />
         <input
           type={"password"}
-          required={true}
+          required
+          password={password}
+        
+          onChange={(e)=>setPassword(e.target.value)}
           placeholder="Password (8+ Characters)"
           style={{
             paddingLeft: "20px",
@@ -68,7 +80,7 @@ const Login = () => {
         </span>
         <Link
           onClick={() => {
-            dispatch(login());
+            dispatch(login(email,password));
           }}
           style={{ textDecoration: "none" }}
         >

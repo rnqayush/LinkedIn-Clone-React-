@@ -1,3 +1,4 @@
+import { loginCredential } from "../../Data/data";
 import {
   LOGIN_FAIL,
   LOGIN_REQUEST,
@@ -5,13 +6,22 @@ import {
   SIGNOUT_SUCCESS,
 } from "../constants/loginConstants";
 
-export const login = () => async (dispatch) => {
+export const login = (email,password) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
   try {
-    setTimeout(() => {
-      dispatch({ type: LOGIN_SUCCESS, payload: true });
-      localStorage.setItem("Token", "1234567890");
-    }, 3000);
+    if(email===loginCredential.email && password===loginCredential.password){
+      setTimeout(() => {
+        dispatch({ type: LOGIN_SUCCESS, payload: true });
+        localStorage.setItem("Token",loginCredential.token);
+      }, 3000);
+    }else{
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: "Incorrect UserId or Password",
+      });
+    }
+  
+    
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
@@ -28,6 +38,9 @@ export const TokenValidCheck = () => async (dispatch) => {
   const token = localStorage.getItem("Token");
   if (token) {
     // api call to check token
-    dispatch({ type: LOGIN_SUCCESS, payload: true });
+    if(token===loginCredential.token){
+      dispatch({ type: LOGIN_SUCCESS, payload: true });
+    }
+    
   }
 };

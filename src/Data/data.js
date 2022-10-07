@@ -1,3 +1,9 @@
+export const loginCredential={
+    email:"rnq.ayush@gmail.com",
+    password:"1234567890",
+    token:"1111111"
+}
+
 export const Feed_ListAPi_Data = [
     {
         userId: 1,
