@@ -27,4 +27,5 @@ export const createPost = (requestBody) => async (dispatch) => {
       payload: "Something went wrrong, please try again",
     });
   }
+  
 };
